@@ -20,13 +20,14 @@ struct TodayView: View {
     
     var body: some View {
         NavigationView {
-            List {
+            Form {
                 ForEach(self.todos, id: \.self) { todo in
-                    HStack {
+                    
                         Text(todo.name ?? "Unknown")
                         
-                    }
+                   
                 }
+                .onDelete(perform: deleteTodo)
                 
             }
             .navigationBarTitle("TODAY", displayMode: .inline)
@@ -46,6 +47,19 @@ struct TodayView: View {
             
         }
         
+    }
+    
+    private func deleteTodo(at offsets: IndexSet) {
+        for index in offsets {
+            let todo = todos[index]
+            managedObjectContext.delete(todo)
+            
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 
