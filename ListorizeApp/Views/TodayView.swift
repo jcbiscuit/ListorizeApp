@@ -12,12 +12,22 @@ struct TodayView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @FetchRequest(entity: Saving.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Saving.name, ascending: true)]) var todos:
+        FetchedResults<Saving>
+    //This will sort the results in alphabetical order with the name
+    
     @State private var showingAddToDoView: Bool = false
     
     var body: some View {
         NavigationView {
-            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            List {
+                ForEach(self.todos, id: \.self) { todo in
+                    HStack {
+                        Text(todo.name ?? "Unknown")
+                        
+                    }
+                }
+                
             }
             .navigationBarTitle("TODAY", displayMode: .inline)
             .navigationBarItems(trailing:
@@ -41,6 +51,8 @@ struct TodayView: View {
 
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
+       TodayView()
         TodayView()
+            .preferredColorScheme(.dark)
     }
 }
