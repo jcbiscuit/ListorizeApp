@@ -31,7 +31,9 @@ struct TodayView: View {
                 
             }
             .navigationBarTitle("TODAY", displayMode: .inline)
-            .navigationBarItems(trailing:
+            .navigationBarItems(
+                leading: EditButton(),
+                trailing:
                                     Button(action: {
                                         self.showingAddToDoView.toggle()
                                     }) {
