@@ -13,7 +13,9 @@ struct AddToDoView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var name: String = ""
-    
+    @State private var errorShowing: Bool = false
+    @State private var errorTitle: String = ""
+    @State private var errorMessage: String = ""
     
     var body: some View {
         NavigationView {
@@ -29,12 +31,17 @@ struct AddToDoView: View {
                             
                             do {
                                 try self.managedObjectContext.save()
-//                                print("New todo: \(todo.name ?? "")")
+                                print("New todo: \(todo.name ?? "")")
                             } catch {
                                 print(error)
                             }
+                        } else {
+                            self.errorShowing = true
+                            self.errorTitle = "Oops!"
+                            self.errorMessage = "Be sure to enter something \nto Listerize Today"
+                            return
                         }
-                        
+                        self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Save")
                     }
@@ -51,6 +58,9 @@ struct AddToDoView: View {
                                             .font(.system(size: 20, weight:.bold))
                                     }
             )
+            .alert(isPresented: $errorShowing) {
+                Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("Got it, thanks!")))
+            }
         }
         
     }
