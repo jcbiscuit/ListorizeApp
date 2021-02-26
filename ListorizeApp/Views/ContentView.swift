@@ -13,9 +13,8 @@ struct SplashScreenView: View {
     @State var endSplash = false
     
     var body: some View {
-        ZStack {
             ZStack {
-                Color("SplashScreen")
+                Color(.systemRed)
                 
                 Image("ListorizeImage")
                     .resizable()
@@ -30,7 +29,7 @@ struct SplashScreenView: View {
             .ignoresSafeArea(.all, edges: .all)
             .onAppear(perform: animateSplash)
             .opacity(endSplash ? 0 : 1)
-        }
+        
     }
     
     func animateSplash() {
@@ -43,7 +42,6 @@ struct SplashScreenView: View {
             }
         }
     }
-    
 }
 
 

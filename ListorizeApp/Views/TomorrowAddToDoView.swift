@@ -1,13 +1,14 @@
 //
-//  AddToDoView.swift
+//  TomorrowAddToDoView.swift
 //  ListorizeApp
 //
-//  Created by Jody Clelland on 25/2/21.
+//  Created by Jody Clelland on 26/2/21.
 //
 
 import SwiftUI
+import CoreData
 
-struct AddToDoView: View {
+struct TomorrowAddToDoView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -21,11 +22,11 @@ struct AddToDoView: View {
         NavigationView {
             VStack {
                 Form {
-                    TextField("Listorize Today", text: $name)
+                    TextField("Listorize Tomorrow", text: $name)
                     
                     Button(action: {
                         if self.name != "" {
-                            let todo = Saving(context: self.managedObjectContext)
+                            let todo = SavingTomorrow(context: self.managedObjectContext)
                             todo.name = self.name
                             
                             
@@ -38,7 +39,7 @@ struct AddToDoView: View {
                         } else {
                             self.errorShowing = true
                             self.errorTitle = "Oops!"
-                            self.errorMessage = "Be sure to enter something \nto Listerize Today"
+                            self.errorMessage = "Be sure to enter something \nto Listerize Tomorrow"
                             return
                         }
                         self.presentationMode.wrappedValue.dismiss()
@@ -49,7 +50,7 @@ struct AddToDoView: View {
             
                 Spacer()
             }
-            .navigationBarTitle("TODAY", displayMode: .inline)
+            .navigationBarTitle("TOMORROW", displayMode: .inline)
             .navigationBarItems(trailing:
                                     Button(action: {
                                         self.presentationMode.wrappedValue.dismiss()
@@ -66,8 +67,8 @@ struct AddToDoView: View {
     }
 }
 
-struct AddToDoView_Previews: PreviewProvider {
+struct TomorrowAddToDoView_Previews: PreviewProvider {
     static var previews: some View {
-        AddToDoView()
+        TomorrowAddToDoView()
     }
 }

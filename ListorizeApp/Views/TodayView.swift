@@ -19,7 +19,7 @@ struct TodayView: View {
     @State private var showingAddToDoView: Bool = false
     
     var body: some View {
-        NavigationView {
+        
             Form {
                 ForEach(self.todos, id: \.self) { todo in
                     
@@ -32,22 +32,23 @@ struct TodayView: View {
             }
             .navigationBarTitle("TODAY", displayMode: .inline)
             .navigationBarItems(
-                leading: EditButton(),
-                trailing:
-                                    Button(action: {
-                                        self.showingAddToDoView.toggle()
-                                    }) {
-                                        Image(systemName: "plus")
-                                            .foregroundColor(Color(.systemBlue))
-                                            .font(.system(size: 30, weight:.bold))
-                                        
-                                    }
+                trailing: EditButton()
+                
                 .sheet(isPresented: $showingAddToDoView) {
                     AddToDoView().environment(\.managedObjectContext, self.managedObjectContext)
                 }
             )
             
-        }
+       
+        
+        Button(action: {
+                                self.showingAddToDoView.toggle()
+                            }) {
+                                Image(systemName: "plus")
+                                    .foregroundColor(Color(.systemBlue))
+                                    .font(.system(size: 30, weight:.bold))
+                                
+                            }
         
     }
     
