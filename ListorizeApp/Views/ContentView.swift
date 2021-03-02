@@ -13,22 +13,22 @@ struct SplashScreenView: View {
     @State var endSplash = false
     
     var body: some View {
-            ZStack {
-                Color(.systemRed)
-                
-                Image("ListorizeImage")
-                    .resizable()
-                    .renderingMode(.original)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: animate ? nil : 45, height: animate ? nil : 45)
-                    
-                    .scaleEffect(animate ? 3 : 1)
-                    .frame(width: UIScreen.main.bounds.width)
-            }
+        ZStack {
+            Color("SplashScreen")
             
-            .ignoresSafeArea(.all, edges: .all)
-            .onAppear(perform: animateSplash)
-            .opacity(endSplash ? 0 : 1)
+            Image("Listorize Image")
+                .resizable()
+                .renderingMode(.original)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: animate ? nil : 45, height: animate ? nil: 45)
+                .scaleEffect(animate ? 3 : 1)
+                .frame(width: UIScreen.main.bounds.width)
+        }
+        
+        .ignoresSafeArea(.all, edges: .all)
+        .onAppear(perform: animateSplash)
+        .opacity(endSplash ? 0 : 1)
+        
         
     }
     
@@ -37,19 +37,15 @@ struct SplashScreenView: View {
             withAnimation(Animation.easeOut(duration: 1.0)) {
                 animate.toggle()
             }
-            withAnimation(Animation.linear(duration: 1.0)) {
-                endSplash.toggle()
-            }
         }
+        
     }
 }
-
 
 
 struct ContentView: View {
     
     @State private var currentDate = Date()
-    
     
     var body: some View {
         ZStack {
@@ -62,7 +58,7 @@ struct ContentView: View {
                         Text("LISTORIZE").bold().underline().kerning(2.5)
                             .font(.system(size: 40)).fontWeight(.thin).foregroundColor(Color("TextColor"))
                             .padding(.bottom, 100)
-                    
+                        
                         HStack {
                             NavigationLink(
                                 destination: TodayView()) {
@@ -90,7 +86,7 @@ struct ContentView: View {
                                     .padding(.all)
                             }
                         }
-                    
+                        
                         NavigationLink(
                             destination: UpcomingView()) {
                             Text("UPCOMING").font(.system(size: 20)).bold().kerning(2.5)
@@ -104,7 +100,7 @@ struct ContentView: View {
                                 .padding()
                         }
                         
-        
+                        
                         DatePicker("Current Date", selection: $currentDate, in: Date()..., displayedComponents: .date)
                             .padding()
                             .datePickerStyle(GraphicalDatePickerStyle())
@@ -117,7 +113,7 @@ struct ContentView: View {
         }
     }
 }
- 
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
