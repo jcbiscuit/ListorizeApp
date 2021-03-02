@@ -1,6 +1,7 @@
 # ListorizeApp
-Listorize will help you organise the list of things you have to do for today, tomorrow and those upcoming
-Core Data used to allow user to store and delete data for Today, Tomorrow and Upcoming
+Listorize will help you organise the list of things you have to do for today, tomorrow and those upcoming. 
+Core Data used to allow user to store and delete data for Today, Tomorrow and Upcoming. 
+Future plans for the app: Allow users to select a date on the calendar and add in items from there. 
 
 App Home Screen in darkmode 
 <img width="337" alt="Screen Shot 2021-03-02 at 11 24 52 am" src="https://user-images.githubusercontent.com/36807329/109578101-d9fd8900-7b4a-11eb-82f9-e10ef0785f4e.png">
@@ -18,4 +19,4 @@ Error message if user doesnt enter anything to Listorize
 <img width="210" alt="Screen Shot 2021-03-02 at 11 26 15 am" src="https://user-images.githubusercontent.com/36807329/109578776-e3d3bc00-7b4b-11eb-8202-7c146bb90a4c.png">
 
 
-Future plans for the app: Allow users to select a date on the calendar and add in items from there
+
